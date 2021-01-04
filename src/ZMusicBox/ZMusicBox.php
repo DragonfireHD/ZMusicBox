@@ -52,16 +52,16 @@ class ZMusicBox extends PluginBase implements Listener{
 						case "next":
 						case "skip":
 							$this->StartNewTask();
-							$sender->sendMessage(TextFormat::GREEN."Switched to next song");
+							$sender->sendMessage(TextFormat::GREEN."Es wird wird nun ein anderes Lied Abgespielt");
 							return true;
 							break;
 						case "stop":
 						case "pause":
 							if($sender->isOp()){
 								$this->getScheduler()->cancelAllTasks($this);
-								$sender->sendMessage(TextFormat::GREEN."Song Stopped");
+								$sender->sendMessage(TextFormat::GREEN."Lied gestoppt");
 							}else{
-								$sender->sendMessage(TextFormat::RED."No Permission");
+								$sender->sendMessage(TextFormat::RED."Keine Berechtigung Du benötigst ein Höheren Rang Dafür!");
 							}
 							return true;
 							break;	
@@ -70,15 +70,15 @@ class ZMusicBox extends PluginBase implements Listener{
 						case "resume":
 							if($sender->isOp()){
 								$this->StartNewTask();
-								$sender->sendMessage(TextFormat::GREEN."Song Started");
+								$sender->sendMessage(TextFormat::GREEN."Musik wird Abgespielt...");
 							}else{
-								$sender->sendMessage(TextFormat::RED."No Permission");
+								$sender->sendMessage(TextFormat::RED."Keine Berechtigung Du benötigst ein Höheren Rang Dafür");
 							}
 							return true;
 							break;	
 					}
 				}else{
-					$sender->sendMessage(TextFormat::RED."Usage:/music <start|stop|next>");
+					$sender->sendMessage(TextFormat::RED."Nutze:/music <start|stop|next>");
 					return true;
 				}
 			break;		
@@ -153,8 +153,8 @@ class ZMusicBox extends PluginBase implements Listener{
         $maxX = $x + 5;	
         $minY = $y - 5;
         $maxY = $y + 5;
-        $minZ = $z - 2;
-        $maxZ = $z + 2;
+        $minZ = $z - 15;
+        $maxZ = $z + 15;
         
         for($x = $minX; $x <= $maxX; ++$x){
 			for($y = $minY; $y <= $maxY; ++$y){
@@ -181,9 +181,9 @@ class ZMusicBox extends PluginBase implements Listener{
 				$noteblock1 = $noteblock;
 				if(!empty($noteblock)){
 					if($this->song->name != ""){
-						$p->sendPopup("§b|->§6Now Playing: §a".$this->song->name."§b<-|");
+						$p->sendPopup("§b|->§6Es wird: §a".$this->song->name." |§6Abgespielt §b<-|");
 					}else{	
-						$p->sendPopup("§b|->§6Now Playing: §a".$this->name."§b<-|");
+						$p->sendPopup("§b|->§6Es wird: §a".$this->name." |§6Abgespielt§b<-|");
 					}
 					$i = 0;
 					while ($i < $blo){
